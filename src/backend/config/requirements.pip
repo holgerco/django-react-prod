@@ -1,0 +1,7 @@
+Django==3
+gunicorn
+django-polymorphic
+psycopg2
+pytz
+django-custom-user-models
+kavenegar
