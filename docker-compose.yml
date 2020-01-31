@@ -4,7 +4,7 @@ services:
         build: ./nginx
         container_name: ng01
         ports: 
-            - "80:80"
+            - "8000:80"
         volumes: 
             - ./static:/src/backend/staticfiles
             - ./media:/src/backend/mediafiles
@@ -30,7 +30,7 @@ services:
         build: ./src/frontend/
         container_name: rj01
         ports: 
-            - "3000:3000"
+            - "80:3000"
         environment: 
             - NODE_ENV=development
         depends_on: 
