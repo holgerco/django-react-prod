@@ -184,3 +184,9 @@ sketch
 .env.prod
 
 static
+
+#pycharm intellij
+
+*.xml
+*.iml
+.idea
