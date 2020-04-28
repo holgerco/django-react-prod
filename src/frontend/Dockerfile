@@ -6,7 +6,7 @@ COPY . /app/
 
 # Install dependencies
 
-RUN npm install
+RUN yarn install
 
 EXPOSE 3000
 

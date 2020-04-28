@@ -7,7 +7,7 @@ services:
             - "8000:80"
         volumes: 
             - ./static:/src/backend/staticfiles
-            - ./media:/src/backend/mediafiles
+            - ./media:/home/app/web/mediafiles
         depends_on: 
             - backend
             - frontend
@@ -20,7 +20,7 @@ services:
             - ./static:/src/backend/staticfiles
             - ./media:/src/backend/mediafiles
         depends_on: 
-            - db
+            - postgres
         env_file: 
             - ./.env.prod
         expose: 
@@ -30,19 +30,26 @@ services:
         build: ./src/frontend/
         container_name: rj01
         ports: 
-            - "80:3000"
+            - "3000:3000"
         environment: 
             - NODE_ENV=development
+        volumes:
+            - ./src/frontend/:/app/frontend
+            - node-modules:/app/frontend/node_modules
         depends_on: 
             - backend
     
-    db:
+    postgres:
         image: postgres:latest
         volumes:
-            - postgres_data:/var/lib/postgresql/data/
+            - type : volume
+              source : ./postgres_data
+              target : /var/lib/postgresql/data
         container_name: ps01
         env_file: 
             - ./.env.prod
+        ports:
+            - "5432:5432"
 
 
 #To persist the data beyond the life of the container we configured a volume.
@@ -51,3 +58,4 @@ volumes:
     postgres_data:
     static:
     media: 
+    node-modules:
